@@ -1,7 +1,26 @@
 <template>
   <div class="wrapper">
+    <!-- List airport -->
     <div v-for="airport in airports" :key="airport.abbreviation">
-      <airport-card :airport="airport" />
+      <airport-card
+        :airport="airport"
+        @favorite-airport="$store.dispatch('addToFavorites', $event)"
+      />
+    </div>
+    <!-- List airport favorate -->
+    <div v-if="$store.state.favorites.length">
+      <h1>
+        Favorites
+        <template v-if="$store.state.favorites.length"
+          >({{ $store.state.favorites.length }})</template
+        >
+      </h1>
+      <div
+        v-for="airport in $store.state.favorites"
+        :key="airport.abbreviation"
+      >
+        <airport-card :airport="airport" />
+      </div>
     </div>
   </div>
 </template>

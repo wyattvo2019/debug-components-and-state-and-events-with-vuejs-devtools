@@ -2,6 +2,7 @@
   <div
     class="airport"
     :class="{ 'is-under-construction': airport.construction }"
+    @click="$emit('favorite-airport', airport)"
   >
     <p>{{ airport.abbreviation }}</p>
     <p>{{ airport.name }}</p>
